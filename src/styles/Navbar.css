@@ -9,3 +9,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-select {
+  margin-left: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  /* border: 1px solid #ccc; */
+  border: none;
+  background-color: #f7f7f7;
+  font-size: 1rem;
+  cursor: pointer;
+}
