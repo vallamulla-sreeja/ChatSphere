@@ -1,7 +1,0 @@
-{
-  "display": "standalone",
-  "lang": "en",
-  "name": "ChatSphere",
-  "short_name": "ChatSphere",
-  "start_url": "/?utm_source=web_app_manifest"
-}
