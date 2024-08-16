@@ -8,7 +8,7 @@ import DropdownComponent from "../Dropdown"; // Adjust the path if necessary
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("gpt-3.5-turbo");
+  const [selectedModel, setSelectedModel] = useState("Groq");
 
   let [fontsLoaded] = useFonts({
     Inder_400Regular,
@@ -19,15 +19,15 @@ const Navbar = () => {
   }
 
   const data = [
+    { label: "Groq", value: "groq" },
     { label: "ChatGPT-3.5", value: "gpt-3.5-turbo" },
     { label: "ChatGPT-4", value: "gpt-4" },
     { label: "ChatGPT-4-32k", value: "gpt-4-32k" },
     { label: "DALL·E", value: "dalle" },
     { label: "Gemini", value: "gemini" },
-    { label: "Groq", value: "groq" },
   ];
 
-  const handleModelChange = (value) => {
+  const handleModelChange = value => {
     setSelectedModel(value);
   };
 
@@ -46,7 +46,7 @@ const Navbar = () => {
 
         <DropdownComponent
           data={data}
-          placeholder='Select Model'
+          placeholder={selectedModel}
           onSelect={handleModelChange}
           iconName='rocket-outline'
           iconColor={isDarkMode ? "white" : "black"}
