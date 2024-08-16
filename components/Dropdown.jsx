@@ -20,9 +20,10 @@ const DropdownComponent = ({ data, placeholder, onSelect, iconName, iconColor, i
         iconStyle={styles.iconStyle}
         data={data}
         maxHeight={300}
+      
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? placeholder : '...'}
+        placeholder={!isFocus ? placeholder : 'Select Model'}
         value={value}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
@@ -33,14 +34,7 @@ const DropdownComponent = ({ data, placeholder, onSelect, iconName, iconColor, i
             onSelect(item.value);
           }
         }}
-        renderLeftIcon={() => (
-          <AntDesign
-            style={styles.icon}
-            color={isDarkMode ? 'transparent' : 'transparent'}
-            name={iconName || 'Safety'}
-            size={20}
-          />
-        )}
+  
       />
     </View>
   );
@@ -56,6 +50,7 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 8,
     borderRadius: 8,
+    minWidth: 200,
   },
   icon: {
     marginRight: 5,
