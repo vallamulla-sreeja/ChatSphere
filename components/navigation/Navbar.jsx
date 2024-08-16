@@ -8,7 +8,7 @@ import DropdownComponent from "../Dropdown"; // Adjust the path if necessary
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("Groq");
+  const [selectedModel, setSelectedModel] = useState("Groq - Llama 70b");
 
   let [fontsLoaded] = useFonts({
     Inder_400Regular,
@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   const data = [
-    { label: "Groq", value: "groq" },
+    { label: "Groq - Llama 70b", value: "groq" },
     { label: "ChatGPT-3.5", value: "gpt-3.5-turbo" },
     { label: "ChatGPT-4", value: "gpt-4" },
     { label: "ChatGPT-4-32k", value: "gpt-4-32k" },

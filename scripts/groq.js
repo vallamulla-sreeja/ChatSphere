@@ -14,7 +14,7 @@ async function groqResponse(content) {
           content: content,
         },
       ],
-      model: "mixtral-8x7b-32768",
+      model: "llama-3.1-70b-versatile",
     });
     return chatCompletion.choices[0]?.message?.content || "";
   } catch (error) {
