@@ -192,6 +192,10 @@
 based on the code you have written the PR would be requested for changes, if
 any, and eventually Merged!
 
+This project follows a specific design which needs to be implemented in the UI.
+You can check that on
+[Figma](https://www.figma.com/design/6x6jrOQgfMoWWENXD9NFF0/ChatSphere?node-id=0-1&t=mNiBIXIcFv7HStX0-1)
+
 ## Guidelines for Contributions
 
 This guide helps you to follow the best practices to follow while writing code -
