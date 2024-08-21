@@ -3,7 +3,6 @@
 </p>
 <h1 align="center">ChatSphere</h1>
 
----
 
 ChatSphere is an innovative AI-powered search engine, designed to revolutionize
 the way users interact with information. Unlike traditional search engines,
@@ -37,18 +36,14 @@ hands of users, [VedaVerse](https://vedaverse.io) aims to create a personalized
 search experience that adapts to diverse needs and preferences.
 
 <p align="center">
-   <img src="https://i.ibb.co/4PmzHLP/Mac-Book-Air-3.png" alt="Home" border="0" width="600">
+   <img src="https://i.ibb.co/4PmzHLP/Mac-Book-Air-3.png" alt="Home" border="0" width="600"><br>
    <img src="https://i.ibb.co/fNcN8cn/Mac-Book-Air-1.png" alt="Chat" border="0" width="300">
    <img src="https://i.ibb.co/PQnrD6S/Mac-Book-Air-2.png" alt="Artifact" border="0" width="300">
 </p>
 
 ## Documentation and Guidelines
 
----
-
 ### Setup and Installation
-
----
 
 1. For the purpose of this project, we need the following installed on our
    systems:
@@ -210,8 +205,6 @@ search experience that adapts to diverse needs and preferences.
 
 ### How to Contribute
 
----
-
 `Skip steps 1 - 4 if you followed all the steps from Setup and Installation`
 
 1. Make sure to fork this repository into your GitHub account - this way you
@@ -247,8 +240,6 @@ You can check that on
 [Figma](https://www.figma.com/design/6x6jrOQgfMoWWENXD9NFF0/ChatSphere?node-id=0-1&t=mNiBIXIcFv7HStX0-1)
 
 ### Guidelines for Contributions
-
----
 
 This guide helps you to follow the best practices to follow while writing code -
 so that you write the best way
