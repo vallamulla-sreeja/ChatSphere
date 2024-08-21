@@ -36,6 +36,7 @@ hands of users, [VedaVerse](https://vedaverse.io) aims to create a personalized
 search experience that adapts to diverse needs and preferences.
 
 <p align="center">
+   ![MacBook Air - 1](https://github.com/user-attachments/assets/2ef3d038-c965-4a26-885f-d5e32d7928bf)
    <img src="https://i.ibb.co/4PmzHLP/Mac-Book-Air-3.png" alt="Home" border="0" width="600"><br>
    <img src="https://i.ibb.co/fNcN8cn/Mac-Book-Air-1.png" alt="Chat" border="0" width="300">
    <img src="https://i.ibb.co/PQnrD6S/Mac-Book-Air-2.png" alt="Artifact" border="0" width="300">
