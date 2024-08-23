@@ -1,53 +1,69 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const cardsData = [
-  'Complete my travel blog tagline: explore, discover, and...',
-  'Suggest innovative tech gadgets, with key features and drawbacks',
-  'Plan engaging icebreakers for our virtual conference.',
-  'Outline a marketing strategy for launching our new app.',
+  "Complete my travel blog tagline: explore, discover, and...",
+  "Suggest innovative tech gadgets, with key features and drawbacks",
+  "Plan engaging icebreakers for our virtual conference.",
+  "Outline a marketing strategy for launching our new app.",
 ];
 
 const Cards = () => {
   return (
-    <ScrollView
-      contentContainerStyle={styles.cards}
-      // horizontal
-      showsHorizontalScrollIndicator={false}
-    >
-      {cardsData.map((text, index) => (
-        <TouchableOpacity style={styles.card} key={index}>
-          <Text style={styles.cardText}>{text}</Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+    <View style={styles.container}>
+      <View style={styles.row}>
+        {cardsData.slice(0, 2).map((text, index) => (
+          <TouchableOpacity style={styles.card} key={index}>
+            <Text style={styles.cardText}>{text}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <View style={styles.row}>
+        {cardsData.slice(2, 4).map((text, index) => (
+          <TouchableOpacity style={styles.card} key={index + 2}>
+            <Text style={styles.cardText}>{text}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  cards: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-    alignItems: 'center',
-    width: '100%',
+  container: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: height * 0.02, // 2% of screen height
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: height * 0.02, // 2% of screen height
   },
   card: {
-    borderColor: '#f08080',
+    borderColor: "#f08080",
     borderWidth: 1,
     borderRadius: 10,
-    padding: 15, // Adjust padding for better visual balance
-    width: 160, // Fixed width
-    height: 100, // Fixed height to ensure uniformity
-    marginHorizontal: 5, // Space between cards
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: width * 0.02, // 2% of screen width
+    width: width * 0.45, // 45% of screen width
+    aspectRatio: 1.6, // This will maintain a consistent aspect ratio
+    backgroundColor: "white",
+    justifyContent: "center",
   },
   cardText: {
-    fontSize: 14,
-    color: '#333',
-    // Ensure text fits well within the card
+    fontSize: width * 0.03, // 3% of screen width
+    color: "#333",
+    textAlign: "center",
   },
 });
 

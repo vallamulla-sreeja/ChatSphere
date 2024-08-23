@@ -1,21 +1,31 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Platform,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import { Inder_400Regular } from "@expo-google-fonts/inder";
 import newchatImage from "../../assets/images/file.svg";
-import DropdownComponent from "../Dropdown"; // Adjust the path if necessary
+import DropdownComponent from "../Dropdown";
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedModel, setSelectedModel] = useState("Groq - Llama 70b");
+  const insets = useSafeAreaInsets();
 
   let [fontsLoaded] = useFonts({
     Inder_400Regular,
   });
 
   if (!fontsLoaded) {
-    return null; // or some fallback component while the font is loading
+    return null;
   }
 
   const data = [
@@ -32,90 +42,98 @@ const Navbar = () => {
   };
 
   return (
-    <View style={[styles.navbar, isDarkMode && styles.darkMode]}>
-      <View style={styles.leftSection}>
-        <TouchableOpacity>
-          <Ionicons name='menu' size={24} color='red' />
-        </TouchableOpacity>
-
-        <Image
-          source={newchatImage}
-          style={styles.newchatImage}
-          resizeMode='contain'
-        />
-
-        <DropdownComponent
-          data={data}
-          placeholder={selectedModel}
-          onSelect={handleModelChange}
-          iconName='rocket-outline'
-          iconColor={isDarkMode ? "white" : "black"}
-          isDarkMode={isDarkMode}
-        />
-      </View>
-      <View style={styles.rightSection}>
-        <TouchableOpacity>
-          <Ionicons
-            name='document-text-outline'
-            size={24}
-            color={isDarkMode ? "white" : "black"}
+    <SafeAreaView
+      style={[
+        styles.safeArea,
+        { backgroundColor: isDarkMode ? "#333" : "#fff" },
+        { paddingTop: Platform.OS === "android" ? insets.top : 0 },
+      ]}
+    >
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={[styles.navbar, isDarkMode && styles.darkMode]}
+      >
+        <View style={styles.leftSection}>
+          <TouchableOpacity>
+            <Ionicons name='menu' size={24} color='red' />
+          </TouchableOpacity>
+          <Image
+            source={newchatImage}
+            style={styles.newchatImage}
+            resizeMode='contain'
           />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons
-            name='share-outline'
-            size={24}
-            color={isDarkMode ? "white" : "black"}
+          <DropdownComponent
+            data={data}
+            placeholder={selectedModel}
+            onSelect={handleModelChange}
+            iconName='rocket-outline'
+            iconColor={isDarkMode ? "white" : "black"}
+            isDarkMode={isDarkMode}
           />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setIsDarkMode(!isDarkMode)}>
-          <Ionicons
-            name={isDarkMode ? "sunny-outline" : "moon-outline"}
-            size={24}
-            color={isDarkMode ? "white" : "black"}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons
-            name='star-outline'
-            size={24}
-            color={isDarkMode ? "white" : "black"}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons
-            name='person-circle-outline'
-            size={50}
-            color={isDarkMode ? "white" : "#989cff"}
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
+        </View>
+        <View style={styles.rightSection}>
+          <TouchableOpacity>
+            <Ionicons
+              name='document-text-outline'
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Ionicons
+              name='share-outline'
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setIsDarkMode(!isDarkMode)}>
+            <Ionicons
+              name={isDarkMode ? "sunny-outline" : "moon-outline"}
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Ionicons
+              name='star-outline'
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Ionicons
+              name='person-circle-outline'
+              size={40}
+              color={isDarkMode ? "white" : "#989cff"}
+            />
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    width: "100%",
+  },
   navbar: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 10,
-    backgroundColor: "#fff",
+    paddingVertical: 10,
   },
   darkMode: {
     backgroundColor: "#333",
   },
   leftSection: {
-    marginLeft: 15,
     flexDirection: "row",
     alignItems: "center",
-    gap: 15,
+    paddingHorizontal: 10,
   },
   rightSection: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 15,
-    marginRight: 15,
+    paddingHorizontal: 10,
   },
   newchatImage: {
     marginLeft: 10,
