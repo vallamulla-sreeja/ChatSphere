@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   ScrollView,
   SafeAreaView,
   Dimensions,
@@ -11,6 +10,7 @@ import {
 import Prompt from "@/components/Prompt";
 import Cards from "@/components/Cards";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import Logo from "@/components/svgs/Logo";
 
 const { width, height } = Dimensions.get("window");
 
@@ -26,11 +26,7 @@ const Home = () => {
       >
         <View style={styles.container}>
           <View style={styles.title}>
-            <Image
-              source={require("@/assets/images/logo.svg")}
-              style={styles.logo}
-              resizeMode='contain'
-            />
+            <Logo style={styles.logo} />
             <Text
               style={[styles.titleText, isDarkMode && styles.darkTitleText]}
             >
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.05, // 5% of screen height
   },
   title: {
-    flexDirection: "column",
+    flexDirection: "row", // Change to 'row' to align items horizontally
     alignItems: "center",
     justifyContent: "center",
     marginBottom: height * 0.03, // 3% of screen height
