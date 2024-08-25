@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  Platform,
+  Text,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -18,6 +19,7 @@ import DropdownComponent from "../Dropdown";
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedModel, setSelectedModel] = useState("Groq - Llama 70b");
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const insets = useSafeAreaInsets();
 
   let [fontsLoaded] = useFonts({
@@ -41,19 +43,18 @@ const Navbar = () => {
     setSelectedModel(value);
   };
 
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
   return (
     <SafeAreaView
       style={[
         styles.safeArea,
         { backgroundColor: isDarkMode ? "#333" : "#fff" },
-        { paddingTop: Platform.OS === "android" ? insets.top : 0 },
       ]}
     >
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={[styles.navbar, isDarkMode && styles.darkMode]}
-      >
+      <View style={[styles.navbar, isDarkMode && styles.darkMode]}>
         <View style={styles.leftSection}>
           <TouchableOpacity>
             <Ionicons name='menu' size={24} color='red' />
@@ -73,35 +74,10 @@ const Navbar = () => {
           />
         </View>
         <View style={styles.rightSection}>
-          <TouchableOpacity>
-            <Ionicons
-              name='document-text-outline'
-              size={24}
-              color={isDarkMode ? "white" : "black"}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Ionicons
-              name='share-outline'
-              size={24}
-              color={isDarkMode ? "white" : "black"}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setIsDarkMode(!isDarkMode)}>
-            <Ionicons
-              name={isDarkMode ? "sunny-outline" : "moon-outline"}
-              size={24}
-              color={isDarkMode ? "white" : "black"}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Ionicons
-              name='star-outline'
-              size={24}
-              color={isDarkMode ? "white" : "black"}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={toggleDropdown}
+            style={styles.avatarButton}
+          >
             <Ionicons
               name='person-circle-outline'
               size={40}
@@ -109,7 +85,71 @@ const Navbar = () => {
             />
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
+
+      {/* Dropdown Menu */}
+      {dropdownVisible && (
+        <View style={styles.dropdownMenu}>
+          <Pressable
+            style={styles.dropdownItem}
+            onPress={() => {
+              // Action for document icon
+              setDropdownVisible(false);
+            }}
+          >
+            <Ionicons
+              name='document-text-outline'
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+            <Text style={styles.dropdownText}>Saved Prompts</Text>
+          </Pressable>
+          <Pressable
+            style={styles.dropdownItem}
+            onPress={() => {
+              // Action for share icon
+              setDropdownVisible(false);
+            }}
+          >
+            <Ionicons
+              name='share-outline'
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+            <Text style={styles.dropdownText}>Share</Text>
+          </Pressable>
+          <Pressable
+            style={styles.dropdownItem}
+            onPress={() => {
+              setIsDarkMode(!isDarkMode);
+              setDropdownVisible(false);
+            }}
+          >
+            <Ionicons
+              name={isDarkMode ? "sunny-outline" : "moon-outline"}
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+            <Text style={styles.dropdownText}>
+              {isDarkMode ? "Light Mode" : "Dark Mode"}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={styles.dropdownItem}
+            onPress={() => {
+              // Action for star icon
+              setDropdownVisible(false);
+            }}
+          >
+            <Ionicons
+              name='star-outline'
+              size={24}
+              color={isDarkMode ? "white" : "black"}
+            />
+            <Text style={styles.dropdownText}>Favorites</Text>
+          </Pressable>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -120,7 +160,10 @@ const styles = StyleSheet.create({
   },
   navbar: {
     flexDirection: "row",
-    paddingVertical: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    zIndex: 1, // Ensure the navbar stays on top
   },
   darkMode: {
     backgroundColor: "#333",
@@ -128,12 +171,10 @@ const styles = StyleSheet.create({
   leftSection: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 10,
   },
   rightSection: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 10,
   },
   newchatImage: {
     marginLeft: 10,
@@ -142,6 +183,28 @@ const styles = StyleSheet.create({
   },
   inderFont: {
     fontFamily: "Inder_400Regular",
+  },
+  avatarButton: {
+    marginLeft: "auto", // Push the avatar to the extreme right
+  },
+  dropdownMenu: {
+    position: "absolute",
+    top: 60, // Position below the navbar
+    right: 10,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    elevation: 5,
+    padding: 10,
+    zIndex: 2, // Ensure dropdown stays on top
+  },
+  dropdownItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 10,
+  },
+  dropdownText: {
+    marginLeft: 10,
+    fontSize: 16,
   },
 });
 

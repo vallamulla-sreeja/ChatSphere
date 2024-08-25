@@ -25,8 +25,8 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.container}>
+          <Logo style={styles.logo} />
           <View style={styles.title}>
-            <Logo style={styles.logo} />
             <Text
               style={[styles.titleText, isDarkMode && styles.darkTitleText]}
             >
