@@ -9,17 +9,21 @@ import {
 } from "react-native";
 import Prompt from "@/components/Prompt";
 import Cards from "@/components/Cards";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { useTheme } from "@/components/ThemeContext";
 import Logo from "@/components/svgs/Logo";
 
 const { width, height } = Dimensions.get("window");
 
 const Home = () => {
-  const colorScheme = useColorScheme();
-  const isDarkMode = colorScheme === "dark";
+  const { theme } = useTheme();
 
   return (
-    <SafeAreaView style={[styles.safeArea, isDarkMode && styles.darkMode]}>
+    <SafeAreaView
+      style={[
+        styles.safeArea,
+        { backgroundColor: theme.background.backgroundColor },
+      ]}
+    >
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         showsVerticalScrollIndicator={false}
@@ -27,9 +31,7 @@ const Home = () => {
         <View style={styles.container}>
           <Logo style={styles.logo} />
           <View style={styles.title}>
-            <Text
-              style={[styles.titleText, isDarkMode && styles.darkTitleText]}
-            >
+            <Text style={[styles.titleText, { color: theme.text.color }]}>
               ChatSphere
             </Text>
           </View>
@@ -44,10 +46,6 @@ const Home = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#fff",
-  },
-  darkMode: {
-    backgroundColor: "#333",
   },
   scrollViewContent: {
     flexGrow: 1,
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.05, // 5% of screen height
   },
   title: {
-    flexDirection: "row", // Change to 'row' to align items horizontally
+    flexDirection: "row", // Align items horizontally
     alignItems: "center",
     justifyContent: "center",
     marginBottom: height * 0.03, // 3% of screen height
@@ -74,13 +72,9 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: width * 0.1, // 10% of screen width
-    color: "#FF4949",
     fontFamily: "Inder_400Regular",
     fontWeight: "bold",
     textAlign: "center",
-  },
-  darkTitleText: {
-    color: "#fff",
   },
 });
 

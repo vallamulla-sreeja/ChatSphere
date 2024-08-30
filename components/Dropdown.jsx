@@ -2,25 +2,27 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useTheme } from "@/components/ThemeContext";
 
-const DropdownComponent = ({ data, placeholder, onSelect, iconName, iconColor, isDarkMode }) => {
+const DropdownComponent = ({ data, placeholder, onSelect, iconName, iconColor }) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+
+  const { theme } = useTheme();
 
   return (
     <View style={styles.container}>
       <Dropdown
         style={[
           styles.dropdown,
-          isFocus && { borderColor: isDarkMode ? 'transparent' : 'transparent' },
-          { backgroundColor: isDarkMode ? '#333' : 'transparent' }
+          isFocus && { borderColor: 'transparent' },
+          { backgroundColor: theme.background.backgroundColor },  // Updated background color based on theme
         ]}
-        placeholderStyle={[styles.placeholderStyle, { color: isDarkMode ? 'white' : 'black' }]}
-        selectedTextStyle={[styles.selectedTextStyle, { color: isDarkMode ? 'white' : 'black' }]}
-        iconStyle={styles.iconStyle}
+        placeholderStyle={[styles.placeholderStyle, { color: theme.text.color }]}
+        selectedTextStyle={[styles.selectedTextStyle, { color: theme.text.color }]}
+        iconStyle={[styles.iconStyle, { color: theme.text.color }]}  // Optionally change icon color too
         data={data}
         maxHeight={300}
-      
         labelField="label"
         valueField="value"
         placeholder={!isFocus ? placeholder : 'Select Model'}
@@ -34,7 +36,6 @@ const DropdownComponent = ({ data, placeholder, onSelect, iconName, iconColor, i
             onSelect(item.value);
           }
         }}
-  
       />
     </View>
   );
